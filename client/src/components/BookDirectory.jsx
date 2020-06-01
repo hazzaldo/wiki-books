@@ -1,16 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from "apollo-boost";
-
-const GET_ALL_BOOKS_QUERY = gql`
-  {
-    books{
-      id
-      name
-      genre
-    }
-  }
-`;
+import { GET_ALL_BOOKS_QUERY } from '../queries/queries';
 
 function BookDirectory() {
   const { loading, error, data } = useQuery(GET_ALL_BOOKS_QUERY);
