@@ -56,7 +56,7 @@ function AddBook() {
   
     return (
         <form id="add-book">
-
+            <h1>Add a new book to Wiki Books</h1>
             <div className="field">
                 <label>Book name: </label>
                 <input type="text" onChange={handleChange} name="name" value={bookEntry.name}/>
