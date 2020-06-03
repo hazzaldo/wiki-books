@@ -50,7 +50,7 @@ function BookDetails(props) {
   
   return (
     <div id="book-details">
-      <p>Book details</p>
+      <h1>Book details</h1>
         {displayBookDetails()}
     </div>
   );
