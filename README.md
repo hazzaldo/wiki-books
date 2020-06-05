@@ -8,9 +8,9 @@
 The website is hosted live: https://wiki-books-hazzaldo.herokuapp.com/
 
 
-<img src=images/how-to-use.PNG>
+<img src=images/how-to-use/how-to-use.png>
 
-<img src=images/how-to-use1.PNG>
+<img src=images/how-to-use/how-to-use1.PNG>
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
