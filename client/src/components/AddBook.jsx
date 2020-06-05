@@ -16,6 +16,7 @@ function AddBook() {
 
     function handleChange(event) {
         const { name, value } = event.target;
+        console.log(`handleChange event: ${event.target.value}`);
 
         setBookEntry(preValue => {
             return {
@@ -26,6 +27,7 @@ function AddBook() {
     }
 
     function submitBook(event) {
+        console.log(`AuthorId: ${bookEntry.authorId}`);
         addBook({ variables: { 
             name: bookEntry.name,
             genre: bookEntry.genre,
@@ -35,10 +37,11 @@ function AddBook() {
         })
         .then(data => {
             console.log(`Mutation executed: ${JSON.stringify(data)}`);
-            setBookEntry({
+            setBookEntry(prevValue => ({
+                ...prevValue,
                 name: "",
                 genre: ""
-            });
+            }));
         })
         .catch(err => console.log(err));
         event.preventDefault();
@@ -55,16 +58,16 @@ function AddBook() {
     }
   
     return (
-        <form id="add-book">
+        <form id="add-book" onSubmit={submitBook}>
             <h1>Add a new book to Wiki Books</h1>
             <div className="field">
                 <label>Book name: </label>
-                <input type="text" onChange={handleChange} name="name" value={bookEntry.name}/>
+                <input type="text" onChange={handleChange} name="name" required value={bookEntry.name}/>
             </div>
 
             <div className="field">
                 <label>Genre: </label>
-                <input type="text" onChange={handleChange} name="genre" value={bookEntry.genre}/>
+                <input type="text" onChange={handleChange} name="genre" required value={bookEntry.genre}/>
             </div>
 
             <div className="field">
@@ -75,7 +78,7 @@ function AddBook() {
                 </select>
             </div>
 
-            <button onClick={submitBook}>+</button>
+            <button type="submit">+</button>
         </form>
     );
 }
