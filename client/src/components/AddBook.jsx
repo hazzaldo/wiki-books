@@ -16,7 +16,6 @@ function AddBook() {
 
     function handleChange(event) {
         const { name, value } = event.target;
-        console.log(`handleChange event: ${event.target.value}`);
 
         setBookEntry(preValue => {
             return {
@@ -27,16 +26,15 @@ function AddBook() {
     }
 
     function submitBook(event) {
-        console.log(`AuthorId: ${bookEntry.authorId}`);
+        const filledAuthorId = bookEntry.authorId? bookEntry.authorId : data.authors[0].id;
         addBook({ variables: { 
-            name: bookEntry.name,
-            genre: bookEntry.genre,
-            authorId: bookEntry.authorId
+                name: bookEntry.name,
+                genre: bookEntry.genre,
+                authorId: filledAuthorId
             }, 
             refetchQueries: [{ query: GET_ALL_BOOKS_QUERY }]
         })
         .then(data => {
-            console.log(`Mutation executed: ${JSON.stringify(data)}`);
             setBookEntry(prevValue => ({
                 ...prevValue,
                 name: "",
@@ -45,12 +43,12 @@ function AddBook() {
         })
         .catch(err => console.log(err));
         event.preventDefault();
-    }
+    } 
 
     function displayAuthors() {
         if (loading) return (<option disabled>'Loading authors...'</option>);
         if (error) return (`Error: ${error.message}`);
-        return data.authors.map(author => {
+        return data.authors.map((author) => {
             return (
                 <option key={author.id} value={author.id}>{author.name}</option>
             );
@@ -71,9 +69,8 @@ function AddBook() {
             </div>
 
             <div className="field">
-                <label>Author: </label>
+                <label>Author (select author): </label>
                 <select onChange={handleChange} name="authorId">
-                    <option>Select author</option>
                     {displayAuthors()}
                 </select>
             </div>
