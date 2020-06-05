@@ -17,7 +17,6 @@ function BookDirectory() {
     const sortedBooks = data.books.sort((book1, book2) => (book1.name > book2.name ? 1 : -1));
     return sortedBooks.map(book => {
       return (
-      // You can alternatively pass the Hook State Setter directly to onClick and pass the book.id inside of it like so: onClick={(e) => {setSelectedBookId(book.id)} 
       <li onClick={selectBook.bind(null, book.id)} key={book.id}>{book.name}</li>
     )});
   }

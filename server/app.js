@@ -22,13 +22,8 @@ mongoose.connect(process.env.MONGODB_DATABASE_CONNECTION, {useNewUrlParser: true
 );
 
 
-// In this middleware: Express doesn't understand GraphQL, but it will pass all API calls to '/graphql' end point to 'express-graphql', which allows Express to work with GraphQL and process API calls 
 app.use('/graphql', graphqlHTTP({
-    //graphqlHTTP takes options:
-    // First we need to tell graphqlHTTP function the Schema of our data structure (for GraphQL)
-    // we can shorten the code below to just 'schema' rather than 'schema: schema' because the key and value are the same. It's an ES6 feature
     schema: schema,
-    // we want to use the GraphiQL tool when we hit the '/graphql' end point
     graphiql: true
 }));
 

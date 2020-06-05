@@ -19,7 +19,6 @@ const GET_ALL_AUTHORS_QUERY = gql`
   }
 `;
 
-// you can name your mutation if you want (it's optional), like: mutation AddBook($name: String!, $Genre: String!, $authorId: ID)
 const ADD_BOOK_MUTATION = gql`
   mutation($name: String!, $genre: String!, $authorId: ID!){
     addBook(name: $name, genre: $genre, authorId: $authorId){

@@ -4,8 +4,6 @@ import { GET_ALL_AUTHORS_QUERY, ADD_BOOK_MUTATION, GET_ALL_BOOKS_QUERY } from '.
 
 function AddBook() {
     const { loading, error, data } = useQuery(GET_ALL_AUTHORS_QUERY);
-    // to call more than one query using the useQuery, call useQuery hook but give alias names to loading, error, data to avoid queries overwriting each other's returned fields
-    // const { loading: loadingAddBook, error: errorAddBook, data: dataAddBook} = useQuery(A_SECOND_QUERY)
     const [ addBook ] = useMutation(ADD_BOOK_MUTATION);
 
     const [bookEntry, setBookEntry] = useState({
